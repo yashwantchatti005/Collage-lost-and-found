@@ -160,48 +160,99 @@
   </style>
 </head>
 <body>
-<div class="mesh-bg"></div>
-<div class="blob b1"></div><div class="blob b2"></div>
 
+<div class="mesh-bg"></div>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+
+<!-- ════════════════════════════
+     NAVBAR
+════════════════════════════ -->
 <nav>
   <a href="/" class="brand">Lost & Found ✨</a>
   <div class="nav-r">
-    <a href="/view" class="pill pill-o"><i class="bi bi-grid-3x3-gap"></i>View Items</a>
-    <a href="/" class="pill pill-g"><i class="bi bi-house-fill"></i>Home</a>
+    <a href="/view" class="pill pill-o">
+      <i class="bi bi-grid-3x3-gap"></i>View Items
+    </a>
+    <a href="/" class="pill pill-g">
+      <i class="bi bi-house-fill"></i>Home
+    </a>
   </div>
 </nav>
 
-<!-- Mobile info banner (visible on small screens instead of sidebar) -->
+<!-- ════════════════════════════
+     MOBILE INFO BANNER
+     Shown ≤900px, replaces sidebar
+════════════════════════════ -->
 <div class="mobile-info-bar">
-  <p><i class="bi bi-info-circle-fill"></i>Your report will be reviewed by admin and listed within a few hours. Thank you for helping the community! 💜</p>
+  <p>
+    <i class="bi bi-info-circle-fill"></i>
+    Your report will be reviewed by admin and listed within a few hours.
+    Thank you for helping the community! 💜
+  </p>
 </div>
 
+<!-- ════════════════════════════
+     PAGE LAYOUT
+     Desktop  → sidebar | form
+     ≤900px   → form only (sidebar hidden)
+════════════════════════════ -->
 <div class="layout">
+
+  <!-- ── LEFT: Sidebar (desktop only) ── -->
   <aside class="sidebar">
     <span class="sb-eyebrow">Report an Item</span>
     <h2 class="sb-title">Make a Difference 💛</h2>
-    <p class="sb-desc">Your honest report helps reunite someone with something they treasure. Two minutes of your time can make someone's whole day!</p>
+    <p class="sb-desc">
+      Your honest report helps reunite someone with something they treasure.
+      Two minutes of your time can make someone's whole day!
+    </p>
     <ul class="sb-list">
-      <li class="sb-item"><div class="sb-icon">✅</div><span class="sb-text">Reviewed and verified by administration</span></li>
-      <li class="sb-item"><div class="sb-icon">🔒</div><span class="sb-text">Secure and private reporting system</span></li>
-      <li class="sb-item"><div class="sb-icon">⚡</div><span class="sb-text">Listed publicly within a few hours</span></li>
-      <li class="sb-item"><div class="sb-icon">🎉</div><span class="sb-text">Help build a kinder campus community</span></li>
+      <li class="sb-item">
+        <div class="sb-icon">✅</div>
+        <span class="sb-text">Reviewed and verified by administration</span>
+      </li>
+      <li class="sb-item">
+        <div class="sb-icon">🔒</div>
+        <span class="sb-text">Secure and private reporting system</span>
+      </li>
+      <li class="sb-item">
+        <div class="sb-icon">⚡</div>
+        <span class="sb-text">Listed publicly within a few hours</span>
+      </li>
+      <li class="sb-item">
+        <div class="sb-icon">🎉</div>
+        <span class="sb-text">Help build a kinder campus community</span>
+      </li>
     </ul>
   </aside>
 
+  <!-- ── RIGHT: Form ── -->
   <div class="form-area">
     <div class="form-box">
+
       <h1 class="form-title">Report Found Item 🔍</h1>
       <p class="form-sub">Fill in the details below so the owner can find their item.</p>
 
-      <form th:action="@{/save}" th:object="${item}" method="post" enctype="multipart/form-data" id="rf">
-        <div class="fgrid">
-          <div class="fb span2">
+      <form th:action="@{/save}" th:object="${item}" method="post"
+            enctype="multipart/form-data" id="rf">
+
+        <!-- 1. Item Name — always full width -->
+        <div class="fgrid full">
+          <div class="fb">
             <label class="flabel">Item Name *</label>
-            <input type="text" class="finput" th:field="*{itemName}" placeholder="e.g., iPhone 13, Black Leather Wallet" required>
+            <input
+              type="text"
+              class="finput"
+              th:field="*{itemName}"
+              placeholder="e.g., iPhone 13, Black Leather Wallet"
+              required
+            >
           </div>
         </div>
-        <div class="fgrid" style="margin-bottom:1.2rem">
+
+        <!-- 2. Category + Date Found — 2 cols on tablet/desktop, 1 col on mobile -->
+        <div class="fgrid">
           <div class="fb">
             <label class="flabel">Category *</label>
             <select class="fsel" th:field="*{category}" required>
@@ -219,83 +270,144 @@
           </div>
           <div class="fb">
             <label class="flabel">Date Found *</label>
-            <input type="date" class="finput" th:field="*{foundDate}" id="fd" required>
-          </div>
-        </div>
-        <div class="fgrid full" style="margin-bottom:1.2rem">
-          <div class="fb">
-            <label class="flabel">Location Found *</label>
-            <input type="text" class="finput" th:field="*{location}" placeholder="e.g., Main Library, Block A Corridor, Canteen" required>
-          </div>
-        </div>
-        <div class="fgrid full" style="margin-bottom:1.5rem">
-          <div class="fb">
-            <label class="flabel">Description</label>
-            <textarea class="ftarea" th:field="*{description}" placeholder="Describe color, brand, condition, or any identifying marks..."></textarea>
+            <input
+              type="date"
+              class="finput"
+              th:field="*{foundDate}"
+              id="fd"
+              required
+            >
           </div>
         </div>
 
+        <!-- 3. Location — always full width -->
+        <div class="fgrid full">
+          <div class="fb">
+            <label class="flabel">Location Found *</label>
+            <input
+              type="text"
+              class="finput"
+              th:field="*{location}"
+              placeholder="e.g., Main Library, Block A Corridor, Canteen"
+              required
+            >
+          </div>
+        </div>
+
+        <!-- 4. Description — always full width -->
+        <div class="fgrid full" style="margin-bottom:1.5rem">
+          <div class="fb">
+            <label class="flabel">Description</label>
+            <textarea
+              class="ftarea"
+              th:field="*{description}"
+              placeholder="Describe color, brand, condition, or any identifying marks..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- 5. Photo upload — always full width -->
         <div style="margin-bottom:1.5rem">
           <label class="flabel">Item Photo *</label>
           <div class="upload-zone" id="uz">
             <input type="file" name="imageFile" id="ii" accept="image/*" required>
+
+            <!-- Default state -->
             <div id="ui">
               <div class="up-icon">📸</div>
               <div class="up-title">Click or tap to upload photo</div>
               <div class="up-sub">JPG or PNG · Max 5MB</div>
             </div>
+
+            <!-- Preview state (shown after file selected) -->
             <div class="prev-wrap" id="pw">
-              <img id="pi" class="prev-img" alt="Preview">
-              <button type="button" class="prev-rm" id="rb" onclick="removeImg(event)">✕</button>
+              <img id="pi" class="prev-img" alt="Item preview">
+              <button type="button" class="prev-rm" onclick="removeImg(event)">✕</button>
             </div>
           </div>
         </div>
 
+        <!-- 6. Footer: security note + submit button -->
         <div class="form-footer">
-          <span class="form-note"><i class="bi bi-shield-check-fill"></i>Submitted securely to administration</span>
-          <button type="submit" class="btn-submit" id="sb"><i class="bi bi-send-fill"></i>Submit Report</button>
+          <span class="form-note">
+            <i class="bi bi-shield-check-fill"></i>
+            Submitted securely to administration
+          </span>
+          <button type="submit" class="btn-submit" id="sb">
+            <i class="bi bi-send-fill"></i>Submit Report
+          </button>
         </div>
+
       </form>
     </div>
   </div>
-</div>
+  <!-- /form-area -->
 
-<!-- MODAL -->
+</div>
+<!-- /layout -->
+
+<!-- ════════════════════════════
+     SUCCESS MODAL
+════════════════════════════ -->
 <div class="modal-ov" id="modal">
   <div class="modal-box">
     <span class="modal-emoji">🎉</span>
     <div class="modal-title">Report Submitted!</div>
-    <p class="modal-desc">Your item report has been received! Our admin team will review and publish it shortly. Thank you so much for helping the community! 💜</p>
+    <p class="modal-desc">
+      Your item report has been received! Our admin team will review and publish
+      it shortly. Thank you so much for helping the community! 💜
+    </p>
     <button class="btn-mc" id="mclose">Awesome!</button>
   </div>
 </div>
 
 <script>
-  window.addEventListener('load',()=>{ document.getElementById('fd').value=new Date().toISOString().split('T')[0]; });
-
-  document.getElementById('ii').addEventListener('change',function(){
-    const f=this.files[0]; if(!f)return;
-    const r=new FileReader();
-    r.onload=e=>{document.getElementById('pi').src=e.target.result;document.getElementById('ui').style.display='none';document.getElementById('pw').style.display='block'};
-    r.readAsDataURL(f);
+  // Default date = today
+  window.addEventListener('load', () => {
+    document.getElementById('fd').value = new Date().toISOString().split('T')[0];
   });
 
-  function removeImg(e){e.stopPropagation();document.getElementById('ii').value='';document.getElementById('pw').style.display='none';document.getElementById('ui').style.display='block'}
+  // Show image preview after file selected
+  document.getElementById('ii').addEventListener('change', function () {
+    const file = this.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      document.getElementById('pi').src = e.target.result;
+      document.getElementById('ui').style.display = 'none';
+      document.getElementById('pw').style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  });
 
-  const uz=document.getElementById('uz');
-  uz.addEventListener('dragover',e=>{e.preventDefault();uz.classList.add('dov')});
-  uz.addEventListener('dragleave',()=>uz.classList.remove('dov'));
-  uz.addEventListener('drop',e=>{e.preventDefault();uz.classList.remove('dov')});
+  // Remove selected image and reset upload zone
+  function removeImg(e) {
+    e.stopPropagation();
+    document.getElementById('ii').value = '';
+    document.getElementById('pw').style.display = 'none';
+    document.getElementById('ui').style.display = 'block';
+  }
 
-  document.getElementById('rf').addEventListener('submit',function(e){
+  // Drag-and-drop highlight
+  const uz = document.getElementById('uz');
+  uz.addEventListener('dragover',  e => { e.preventDefault(); uz.classList.add('dov'); });
+  uz.addEventListener('dragleave', ()  => uz.classList.remove('dov'));
+  uz.addEventListener('drop',      e => { e.preventDefault(); uz.classList.remove('dov'); });
+
+  // Show success modal on submit, then actually submit after 2s
+  document.getElementById('rf').addEventListener('submit', function (e) {
     e.preventDefault();
-    const b=document.getElementById('sb');
-    b.disabled=true;b.innerHTML='<i class="bi bi-hourglass-split"></i>Submitting...';
+    const btn = document.getElementById('sb');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="bi bi-hourglass-split"></i>Submitting...';
     document.getElementById('modal').classList.add('show');
-    setTimeout(()=>e.target.submit(),2000);
+    setTimeout(() => e.target.submit(), 2000);
   });
 
-  document.getElementById('mclose').addEventListener('click',()=>document.getElementById('modal').classList.remove('show'));
+  // Close modal
+  document.getElementById('mclose').addEventListener('click', () => {
+    document.getElementById('modal').classList.remove('show');
+  });
 </script>
 </body>
 </html>
