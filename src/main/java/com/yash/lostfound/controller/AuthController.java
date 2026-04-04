@@ -13,15 +13,15 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username,
-                        @RequestParam String password,
-                        HttpSession session) {
+    public String login(
+            @RequestParam String username,
+            @RequestParam String password,
+            HttpSession session) {
 
-        if(username.equals("admin") && password.equals("1234")) {
+        if (username.equals("admin") && password.equals("1234")) {
             session.setAttribute("admin", true);
             return "redirect:/admin";
         }
-
         return "redirect:/login?error";
     }
 
