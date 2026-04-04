@@ -1,149 +1,171 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard — Lost & Found</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  <style>
-    :root{--pink:#ff6b9d;--orange:#ff9a3c;--yellow:#ffd166;--teal:#06d6a0;--blue:#4cc9f0;--purple:#845ef7;--text:#1a0533;--muted:#7b6a92;--soft:#f8f5ff}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--soft);color:var(--text);min-height:100vh}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — Lost & Found</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<style>
+:root{
+  --pink:#ff6b9d;--orange:#ff9a3c;--yellow:#ffd166;
+  --teal:#06d6a0;--blue:#4cc9f0;--purple:#845ef7;
+  --text:#1a0533;--muted:#7b6a92;--soft:#f8f5ff;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--soft);color:var(--text);min-height:100vh;overflow-x:hidden}
 
-    .mesh-bg{position:fixed;inset:0;z-index:0;
-      background:radial-gradient(ellipse 60% 50% at 10% 5%,#ffd6e8 0%,transparent 55%),
-                 radial-gradient(ellipse 55% 55% at 90% 90%,#d0f0ff 0%,transparent 55%),
-                 radial-gradient(ellipse 50% 50% at 50% 50%,#fff5d6 0%,transparent 60%),#f8f5ff;
-      animation:ms 14s ease-in-out infinite alternate}
-    @keyframes ms{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(20deg)}}
+.mesh-bg{position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 10% 5%,#ffd6e8 0%,transparent 55%),
+    radial-gradient(ellipse 55% 55% at 90% 90%,#d0f0ff 0%,transparent 55%),
+    radial-gradient(ellipse 50% 50% at 50% 50%,#fff5d6 0%,transparent 60%),
+    #f8f5ff;
+  animation:ms 14s ease-in-out infinite alternate}
+@keyframes ms{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(20deg)}}
 
-    /* NAV */
-    nav{position:sticky;top:0;z-index:999;background:rgba(255,255,255,.9);backdrop-filter:blur(20px);
-      border-bottom:2px solid rgba(255,255,255,.95);box-shadow:0 4px 30px rgba(132,94,247,.1);
-      padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
-    .brand{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:800;text-decoration:none;
-      background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .nav-badge{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;
-      border-radius:50px;padding:.2rem .8rem;font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
-    .nav-r{display:flex;align-items:center;gap:.6rem}
-    .nav-left{display:flex;align-items:center;gap:.8rem;min-width:0}
-    .pill{padding:.44rem 1rem;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;
-      font-size:.82rem;font-weight:600;text-decoration:none;transition:all .3s ease;display:inline-flex;align-items:center;gap:.4rem;border:none;cursor:pointer;white-space:nowrap}
-    .pill-o{background:rgba(255,255,255,.8);border:1.5px solid rgba(132,94,247,.25);color:var(--purple)}
-    .pill-o:hover{background:var(--purple);color:#fff}
-    .pill-d{background:rgba(255,107,157,.1);border:1.5px solid rgba(255,107,157,.3);color:#cc2255}
-    .pill-d:hover{background:rgba(255,107,157,.2);color:#cc2255}
+/* NAV */
+nav{position:sticky;top:0;z-index:999;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);
+  border-bottom:2px solid rgba(255,255,255,.98);box-shadow:0 4px 25px rgba(132,94,247,.1);
+  padding:.85rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.nav-left{display:flex;align-items:center;gap:.65rem;min-width:0}
+.brand{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;text-decoration:none;
+  background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap}
+.nav-badge{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;
+  border-radius:50px;padding:.18rem .7rem;font-size:.66rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;display:none}
+.nav-r{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.pill{padding:.42rem .85rem;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.78rem;font-weight:600;text-decoration:none;transition:all .3s ease;
+  display:inline-flex;align-items:center;gap:.35rem;border:none;cursor:pointer;white-space:nowrap;min-height:36px}
+.pill-o{background:rgba(255,255,255,.8);border:1.5px solid rgba(132,94,247,.25);color:var(--purple)}
+.pill-o:hover{background:var(--purple);color:#fff}
+.pill-d{background:rgba(255,107,157,.08);border:1.5px solid rgba(255,107,157,.3);color:#cc2255}
+.pill-d:hover{background:rgba(255,107,157,.18);color:#cc2255}
 
-    main{position:relative;z-index:1;padding:2rem 1.5rem}
+/* MAIN */
+main{position:relative;z-index:1;padding:1.25rem 1.25rem 3rem}
+.main-inner{max-width:1200px;margin:0 auto}
 
-    .page-header{margin-bottom:1.8rem;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-    .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;
-      background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:.4rem}
-    h1.pt{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;color:var(--text)}
+/* PAGE HEADER */
+.page-header{margin-bottom:1.5rem}
+.eyebrow{font-size:.68rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+  background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:.35rem}
+h1.pt{font-family:'Syne',sans-serif;font-size:clamp(1.35rem,5vw,2.2rem);font-weight:800;color:var(--text)}
 
-    /* SUMMARY CARDS */
-    .summary-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:2rem}
-    .sum-card{background:rgba(255,255,255,.85);backdrop-filter:blur(15px);border:2px solid rgba(255,255,255,.95);
-      border-radius:20px;padding:1.4rem 1.8rem;position:relative;overflow:hidden;
-      box-shadow:0 8px 30px rgba(132,94,247,.08);transition:all .35s ease}
-    .sum-card:hover{transform:translateY(-5px);box-shadow:0 16px 45px rgba(132,94,247,.15)}
-    .sum-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:20px 20px 0 0}
-    .sum-card:nth-child(1)::before{background:linear-gradient(90deg,var(--purple),var(--pink))}
-    .sum-card:nth-child(2)::before{background:linear-gradient(90deg,var(--teal),var(--blue))}
-    .sum-card:nth-child(3)::before{background:linear-gradient(90deg,var(--orange),var(--yellow))}
-    .sum-val{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;line-height:1;margin-bottom:.3rem}
-    .sum-card:nth-child(1) .sum-val{background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .sum-card:nth-child(2) .sum-val{background:linear-gradient(135deg,var(--teal),var(--blue));  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .sum-card:nth-child(3) .sum-val{background:linear-gradient(135deg,var(--orange),var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .sum-lbl{color:var(--muted);font-size:.82rem;font-weight:500}
+/* SUMMARY CARDS */
+.summary-row{display:grid;grid-template-columns:1fr;gap:.85rem;margin-bottom:1.75rem}
+.sum-card{background:rgba(255,255,255,.88);backdrop-filter:blur(15px);border:2px solid rgba(255,255,255,.98);
+  border-radius:18px;padding:1.1rem 1.25rem;display:flex;align-items:center;gap:1rem;
+  box-shadow:0 6px 25px rgba(132,94,247,.08);transition:all .35s ease;position:relative;overflow:hidden}
+.sum-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:18px 0 0 18px}
+.sum-card:nth-child(1)::before{background:linear-gradient(180deg,var(--purple),var(--pink))}
+.sum-card:nth-child(2)::before{background:linear-gradient(180deg,var(--teal),var(--blue))}
+.sum-card:nth-child(3)::before{background:linear-gradient(180deg,var(--orange),var(--yellow))}
+.sum-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(132,94,247,.15)}
+.sum-val{font-family:'Syne',sans-serif;font-size:clamp(1.7rem,6vw,2.2rem);font-weight:800;line-height:1}
+.sum-card:nth-child(1) .sum-val{background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sum-card:nth-child(2) .sum-val{background:linear-gradient(135deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sum-card:nth-child(3) .sum-val{background:linear-gradient(135deg,var(--orange),var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sum-lbl{color:var(--muted);font-size:.8rem;font-weight:500;margin-top:.15rem}
 
-    /* TABLE */
-    .table-wrap{background:rgba(255,255,255,.88);backdrop-filter:blur(20px);
-      border:2px solid rgba(255,255,255,.95);border-radius:24px;overflow:hidden;
-      box-shadow:0 10px 40px rgba(132,94,247,.1)}
-    .table-top{padding:1.2rem 1.5rem;border-bottom:2px solid rgba(248,245,255,.9);
-      display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;
-      background:linear-gradient(135deg,rgba(132,94,247,.04),rgba(255,107,157,.04))}
-    .table-title{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text)}
-    .search-w{display:flex;align-items:center;background:var(--soft);border:2px solid rgba(132,94,247,.15);
-      border-radius:50px;padding:.4rem .9rem;gap:.5rem;transition:all .3s ease}
-    .search-w:focus-within{border-color:var(--purple);box-shadow:0 0 0 3px rgba(132,94,247,.1)}
-    .search-w i{color:#c4b5d8;font-size:.9rem;flex-shrink:0}
-    .search-w input{background:none;border:none;outline:none;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;width:180px}
-    .search-w input::placeholder{color:#c4b5d8}
+/* TABLE CONTAINER */
+.table-wrap{background:rgba(255,255,255,.9);backdrop-filter:blur(20px);
+  border:2px solid rgba(255,255,255,.98);border-radius:22px;overflow:hidden;
+  box-shadow:0 10px 40px rgba(132,94,247,.1)}
+.table-top{padding:1rem 1.25rem;border-bottom:2px solid rgba(248,245,255,.9);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;
+  background:linear-gradient(135deg,rgba(132,94,247,.04),rgba(255,107,157,.04))}
+.table-title{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:var(--text)}
+.search-w{display:flex;align-items:center;background:var(--soft);border:2px solid rgba(132,94,247,.15);
+  border-radius:50px;padding:.4rem .9rem;gap:.45rem;transition:all .3s ease;min-height:40px}
+.search-w:focus-within{border-color:var(--purple);box-shadow:0 0 0 3px rgba(132,94,247,.1)}
+.search-w i{color:#c4b5d8;font-size:.88rem;flex-shrink:0}
+.search-w input{background:none;border:none;outline:none;color:var(--text);
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:.84rem;width:120px}
+.search-w input::placeholder{color:#c4b5d8}
 
-    .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-    table{width:100%;border-collapse:collapse;min-width:550px}
-    thead tr{background:rgba(248,245,255,.8)}
-    th{padding:.9rem 1.2rem;font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
-      color:var(--muted);text-align:left;border-bottom:2px solid rgba(248,245,255,.9);white-space:nowrap}
-    td{padding:1rem 1.2rem;font-size:.88rem;border-bottom:1px solid rgba(248,245,255,.9);vertical-align:middle}
-    tbody tr{transition:background .2s ease}
-    tbody tr:hover{background:rgba(132,94,247,.03)}
-    tbody tr:last-child td{border-bottom:none}
+/* MOBILE CARD VIEW (default) */
+.mobile-cards{padding:.85rem}
+.m-card{background:rgba(255,255,255,.95);border:1.5px solid rgba(248,245,255,.9);border-radius:16px;
+  padding:1rem 1.1rem;margin-bottom:.85rem;box-shadow:0 4px 18px rgba(132,94,247,.07);
+  transition:all .3s ease}
+.m-card:last-child{margin-bottom:0}
+.m-card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(132,94,247,.13)}
+.m-card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.85rem;gap:.5rem}
+.m-card-name{font-weight:700;color:var(--text);font-size:.95rem;line-height:1.3}
+.m-card-id{color:var(--muted);font-size:.72rem;margin-top:.2rem}
+.m-card-row{display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+.m-card-loc{color:var(--muted);font-size:.8rem;display:flex;align-items:center;gap:.3rem}
+.m-card-loc i{color:var(--pink);font-size:.75rem;flex-shrink:0}
+.m-card-cat{display:inline-flex;align-items:center;padding:.2rem .65rem;border-radius:50px;
+  background:rgba(132,94,247,.08);border:1.5px solid rgba(132,94,247,.18);
+  font-size:.72rem;font-weight:700;color:var(--purple);margin-bottom:.6rem}
 
-    .id-cell{color:var(--muted);font-size:.78rem;font-variant-numeric:tabular-nums;font-weight:600}
-    .item-name{font-weight:700;color:var(--text)}
-    .cat-tag{display:inline-flex;align-items:center;padding:.22rem .7rem;border-radius:50px;
-      background:rgba(132,94,247,.08);border:1.5px solid rgba(132,94,247,.18);
-      font-size:.75rem;font-weight:700;color:var(--purple);white-space:nowrap}
-    .loc-txt{color:var(--muted);font-size:.85rem}
+/* DESKTOP TABLE (hidden on mobile) */
+.table-scroll{display:none;overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse}
+thead tr{background:rgba(248,245,255,.85)}
+th{padding:.85rem 1.1rem;font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);text-align:left;border-bottom:2px solid rgba(248,245,255,.9);white-space:nowrap}
+td{padding:.95rem 1.1rem;font-size:.87rem;border-bottom:1px solid rgba(248,245,255,.9);vertical-align:middle}
+tbody tr{transition:background .2s ease}
+tbody tr:hover{background:rgba(132,94,247,.03)}
+tbody tr:last-child td{border-bottom:none}
+.id-cell{color:var(--muted);font-size:.78rem;font-variant-numeric:tabular-nums;font-weight:600}
+.item-name{font-weight:700;color:var(--text)}
+.cat-tag{display:inline-flex;align-items:center;padding:.2rem .7rem;border-radius:50px;
+  background:rgba(132,94,247,.08);border:1.5px solid rgba(132,94,247,.18);font-size:.74rem;font-weight:700;color:var(--purple);white-space:nowrap}
+.loc-txt{color:var(--muted);font-size:.84rem}
 
-    .badge-av{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .85rem;border-radius:50px;
-      background:rgba(6,214,160,.1);border:1.5px solid rgba(6,214,160,.3);
-      color:#059669;font-size:.76rem;font-weight:700;white-space:nowrap}
-    .badge-av::before{content:'';width:6px;height:6px;border-radius:50%;background:#06d6a0;animation:pd 2s infinite;flex-shrink:0}
-    @keyframes pd{0%,100%{opacity:1}50%{opacity:.3}}
-    .badge-cl{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .85rem;border-radius:50px;
-      background:rgba(124,100,146,.08);border:1.5px solid rgba(124,100,146,.2);
-      color:var(--muted);font-size:.76rem;font-weight:600;white-space:nowrap}
+/* BADGES */
+.badge-av{display:inline-flex;align-items:center;gap:.32rem;padding:.28rem .82rem;border-radius:50px;
+  background:rgba(6,214,160,.1);border:1.5px solid rgba(6,214,160,.3);
+  color:#059669;font-size:.74rem;font-weight:700;white-space:nowrap}
+.badge-av::before{content:'';width:6px;height:6px;border-radius:50%;background:#06d6a0;animation:pd 2s infinite;flex-shrink:0}
+@keyframes pd{0%,100%{opacity:1}50%{opacity:.3}}
+.badge-cl{display:inline-flex;align-items:center;gap:.32rem;padding:.28rem .82rem;border-radius:50px;
+  background:rgba(124,100,146,.08);border:1.5px solid rgba(124,100,146,.2);
+  color:var(--muted);font-size:.74rem;font-weight:600;white-space:nowrap}
 
-    .btn-claim{padding:.42rem 1rem;border-radius:50px;
-      background:linear-gradient(135deg,var(--purple),var(--pink));border:none;
-      color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:.8rem;font-weight:700;
-      cursor:pointer;text-decoration:none;transition:all .3s ease;display:inline-flex;align-items:center;gap:.35rem;
-      box-shadow:0 4px 15px rgba(132,94,247,.3);white-space:nowrap}
-    .btn-claim:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(132,94,247,.4);color:#fff}
-    .no-action{color:var(--muted);font-size:.82rem;display:flex;align-items:center;gap:.3rem;white-space:nowrap}
+/* ACTION BUTTONS */
+.btn-claim{padding:.4rem .9rem;border-radius:50px;
+  background:linear-gradient(135deg,var(--purple),var(--pink));border:none;
+  color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:.78rem;font-weight:700;
+  cursor:pointer;text-decoration:none;transition:all .3s ease;
+  display:inline-flex;align-items:center;gap:.3rem;
+  box-shadow:0 4px 14px rgba(132,94,247,.3);white-space:nowrap;min-height:36px}
+.btn-claim:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(132,94,247,.4);color:#fff}
+.no-action{color:var(--muted);font-size:.8rem;display:flex;align-items:center;gap:.3rem}
 
-    /* Mobile card view for small screens */
-    .mobile-cards{display:none;padding:1rem}
-    .m-card{background:rgba(255,255,255,.9);border:1.5px solid rgba(255,255,255,.95);border-radius:18px;
-      padding:1rem 1.2rem;margin-bottom:1rem;box-shadow:0 4px 20px rgba(132,94,247,.07)}
-    .m-card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.8rem;gap:.5rem}
-    .m-card-name{font-weight:700;color:var(--text);font-size:.95rem}
-    .m-card-id{color:var(--muted);font-size:.72rem;margin-top:.2rem}
-    .m-card-row{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-top:.7rem;flex-wrap:wrap}
-    .m-card-loc{color:var(--muted);font-size:.82rem;display:flex;align-items:center;gap:.3rem}
-    .m-card-loc i{color:var(--pink);font-size:.75rem}
+/* TABLET (641px+) */
+@media(min-width:641px){
+  nav{padding:1rem 1.5rem}
+  .nav-badge{display:inline-block}
+  .pill{padding:.44rem 1rem;font-size:.82rem}
+  main{padding:1.75rem 1.5rem 3.5rem}
+  .summary-row{grid-template-columns:repeat(3,1fr);gap:1rem}
+  .sum-card{flex-direction:column;align-items:flex-start;gap:.35rem;
+    padding:1.5rem 1.5rem 1.3rem}
+  .sum-card::before{top:0;bottom:auto;left:0;right:0;width:auto;height:4px;border-radius:18px 18px 0 0}
+  .sum-val{font-size:2.2rem}
+  .search-w input{width:160px}
+  .table-top{padding:1.2rem 1.5rem}
+}
 
-    /* ── RESPONSIVE ── */
-    @media(max-width:640px){
-      nav{padding:.8rem 1rem}
-      .nav-badge{display:none}
-      .pill{padding:.38rem .75rem;font-size:.75rem}
-      main{padding:1.2rem 1rem}
-      .summary-row{grid-template-columns:1fr;gap:.8rem}
-      .sum-card{padding:1.2rem 1.4rem;display:flex;align-items:center;gap:1rem}
-      .sum-card::before{display:none}
-      .sum-card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:20px 0 0 20px}
-      .sum-card:nth-child(1)::after{background:linear-gradient(180deg,var(--purple),var(--pink))}
-      .sum-card:nth-child(2)::after{background:linear-gradient(180deg,var(--teal),var(--blue))}
-      .sum-card:nth-child(3)::after{background:linear-gradient(180deg,var(--orange),var(--yellow))}
-      .sum-val{font-size:2rem;margin-bottom:0}
-      .table-scroll{display:none}
-      .mobile-cards{display:block}
-      .search-w input{width:130px}
-      h1.pt{font-size:1.5rem}
-    }
-    @media(min-width:641px) and (max-width:900px){
-      .summary-row{grid-template-columns:repeat(3,1fr)}
-      main{padding:1.5rem 1.2rem}
-      .search-w input{width:140px}
-    }
-  </style>
+/* DESKTOP (1025px+): show table, hide cards */
+@media(min-width:1025px){
+  nav{padding:1rem 2rem}
+  main{padding:2rem 2rem 4rem}
+  .table-scroll{display:block}
+  .mobile-cards{display:none}
+  .search-w input{width:200px}
+  h1.pt{font-size:2.2rem}
+  .sum-card{padding:1.6rem 1.8rem 1.4rem}
+  .sum-val{font-size:2.5rem}
+}
+</style>
 </head>
 <body>
 <div class="mesh-bg"></div>
@@ -154,18 +176,16 @@
     <span class="nav-badge">Admin</span>
   </div>
   <div class="nav-r">
-    <a href="/" class="pill pill-o"><i class="bi bi-house-fill"></i>Home</a>
-    <a href="/logout" class="pill pill-d"><i class="bi bi-box-arrow-right"></i>Logout</a>
+    <a href="/" class="pill pill-o"><i class="bi bi-house-fill"></i><span>Home</span></a>
+    <a href="/logout" class="pill pill-d"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a>
   </div>
 </nav>
 
 <main>
-  <div style="max-width:1200px;margin:0 auto">
+  <div class="main-inner">
     <div class="page-header">
-      <div>
-        <span class="eyebrow">Administration</span>
-        <h1 class="pt">Manage Found Items 📋</h1>
-      </div>
+      <span class="eyebrow">Administration</span>
+      <h1 class="pt">Manage Found Items 📋</h1>
     </div>
 
     <div class="summary-row" th:if="${items}">
@@ -188,16 +208,47 @@
         <div class="table-title">All Submissions</div>
         <div class="search-w">
           <i class="bi bi-search"></i>
-          <input type="text" id="si" placeholder="Filter items..." oninput="ft()">
+          <input type="text" id="si" placeholder="Filter items..." oninput="ft()" aria-label="Filter items">
         </div>
       </div>
 
-      <!-- Desktop Table -->
+      <!-- MOBILE CARD VIEW -->
+      <div class="mobile-cards" id="mcards">
+        <div th:each="item : ${items}" class="m-card"
+             th:data-text="${item.id + ' ' + item.itemName + ' ' + item.category + ' ' + item.location + ' ' + item.status}">
+          <div class="m-card-header">
+            <div>
+              <div class="m-card-name" th:text="${item.itemName}"></div>
+              <div class="m-card-id" th:text="'#' + ${item.id}"></div>
+            </div>
+            <span class="badge-av" th:if="${item.status == 'Available'}">Available</span>
+            <span class="badge-cl" th:if="${item.status == 'Claimed'}"><i class="bi bi-check2"></i>Claimed</span>
+          </div>
+          <span class="m-card-cat" th:text="${item.category}"></span>
+          <div class="m-card-row">
+            <div class="m-card-loc">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span th:text="${item.location}"></span>
+            </div>
+            <a th:if="${item.status == 'Available'}" th:href="@{/claim/{id}(id=${item.id})}" class="btn-claim">
+              <i class="bi bi-check-circle-fill"></i>Mark Claimed
+            </a>
+            <span th:if="${item.status == 'Claimed'}" class="no-action"><i class="bi bi-dash"></i>Done</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESKTOP TABLE VIEW -->
       <div class="table-scroll">
         <table id="itbl">
           <thead>
             <tr>
-              <th>ID</th><th>Item Name</th><th>Category</th><th>Location</th><th>Status</th><th>Action</th>
+              <th>ID</th>
+              <th>Item Name</th>
+              <th>Category</th>
+              <th>Location</th>
+              <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -220,45 +271,20 @@
           </tbody>
         </table>
       </div>
-
-      <!-- Mobile Cards -->
-      <div class="mobile-cards" id="mcards">
-        <div th:each="item : ${items}" class="m-card"
-             th:data-text="${item.id + ' ' + item.itemName + ' ' + item.category + ' ' + item.location + ' ' + item.status}">
-          <div class="m-card-header">
-            <div>
-              <div class="m-card-name" th:text="${item.itemName}"></div>
-              <div class="m-card-id" th:text="'#' + ${item.id} + ' · ' + ${item.category}"></div>
-            </div>
-            <span class="badge-av" th:if="${item.status == 'Available'}">Available</span>
-            <span class="badge-cl" th:if="${item.status == 'Claimed'}"><i class="bi bi-check2"></i>Claimed</span>
-          </div>
-          <div class="m-card-row">
-            <div class="m-card-loc"><i class="bi bi-geo-alt-fill"></i><span th:text="${item.location}"></span></div>
-            <a th:if="${item.status == 'Available'}" th:href="@{/claim/{id}(id=${item.id})}" class="btn-claim" style="font-size:.75rem;padding:.35rem .85rem">
-              <i class="bi bi-check-circle-fill"></i>Mark Claimed
-            </a>
-            <span th:if="${item.status == 'Claimed'}" class="no-action"><i class="bi bi-dash"></i>Done</span>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </main>
 
 <script>
-  function ft(){
-    const q=document.getElementById('si').value.toLowerCase();
-    // Desktop table rows
-    document.querySelectorAll('#itbl tbody tr').forEach(r=>{
-      r.style.display=r.textContent.toLowerCase().includes(q)?'':'none';
-    });
-    // Mobile cards
-    document.querySelectorAll('#mcards .m-card').forEach(c=>{
-      c.style.display=(c.dataset.text||'').toLowerCase().includes(q)?'':'none';
-    });
-  }
+function ft(){
+  const q=document.getElementById('si').value.toLowerCase();
+  document.querySelectorAll('#itbl tbody tr').forEach(r=>{
+    r.style.display=r.textContent.toLowerCase().includes(q)?'':'none';
+  });
+  document.querySelectorAll('#mcards .m-card').forEach(c=>{
+    c.style.display=(c.dataset.text||'').toLowerCase().includes(q)?'':'none';
+  });
+}
 </script>
 </body>
 </html>
