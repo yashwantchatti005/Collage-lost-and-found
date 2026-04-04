@@ -19,61 +19,67 @@
       animation:ms 14s ease-in-out infinite alternate}
     @keyframes ms{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(20deg)}}
 
+    /* NAV */
     nav{position:sticky;top:0;z-index:999;background:rgba(255,255,255,.9);backdrop-filter:blur(20px);
       border-bottom:2px solid rgba(255,255,255,.95);box-shadow:0 4px 30px rgba(132,94,247,.1);
-      padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between}
+      padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
     .brand{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:800;text-decoration:none;
       background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .nav-badge{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;
       border-radius:50px;padding:.2rem .8rem;font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
-    .nav-r{display:flex;align-items:center;gap:.8rem}
-    .pill{padding:.44rem 1.1rem;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;
-      font-size:.82rem;font-weight:600;text-decoration:none;transition:all .3s ease;display:inline-flex;align-items:center;gap:.4rem;border:none;cursor:pointer}
+    .nav-r{display:flex;align-items:center;gap:.6rem}
+    .nav-left{display:flex;align-items:center;gap:.8rem;min-width:0}
+    .pill{padding:.44rem 1rem;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;
+      font-size:.82rem;font-weight:600;text-decoration:none;transition:all .3s ease;display:inline-flex;align-items:center;gap:.4rem;border:none;cursor:pointer;white-space:nowrap}
     .pill-o{background:rgba(255,255,255,.8);border:1.5px solid rgba(132,94,247,.25);color:var(--purple)}
     .pill-o:hover{background:var(--purple);color:#fff}
     .pill-d{background:rgba(255,107,157,.1);border:1.5px solid rgba(255,107,157,.3);color:#cc2255}
     .pill-d:hover{background:rgba(255,107,157,.2);color:#cc2255}
 
-    main{position:relative;z-index:1;padding:2.5rem 2rem}
-    .page-header{margin-bottom:2rem;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    main{position:relative;z-index:1;padding:2rem 1.5rem}
+
+    .page-header{margin-bottom:1.8rem;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem}
     .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;
       background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:.4rem}
-    h1.pt{font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:800;color:var(--text)}
+    h1.pt{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;color:var(--text)}
 
+    /* SUMMARY CARDS */
     .summary-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:2rem}
     .sum-card{background:rgba(255,255,255,.85);backdrop-filter:blur(15px);border:2px solid rgba(255,255,255,.95);
-      border-radius:20px;padding:1.5rem 2rem;position:relative;overflow:hidden;
+      border-radius:20px;padding:1.4rem 1.8rem;position:relative;overflow:hidden;
       box-shadow:0 8px 30px rgba(132,94,247,.08);transition:all .35s ease}
     .sum-card:hover{transform:translateY(-5px);box-shadow:0 16px 45px rgba(132,94,247,.15)}
     .sum-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:20px 20px 0 0}
     .sum-card:nth-child(1)::before{background:linear-gradient(90deg,var(--purple),var(--pink))}
     .sum-card:nth-child(2)::before{background:linear-gradient(90deg,var(--teal),var(--blue))}
     .sum-card:nth-child(3)::before{background:linear-gradient(90deg,var(--orange),var(--yellow))}
-    .sum-val{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;line-height:1;margin-bottom:.3rem}
+    .sum-val{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;line-height:1;margin-bottom:.3rem}
     .sum-card:nth-child(1) .sum-val{background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .sum-card:nth-child(2) .sum-val{background:linear-gradient(135deg,var(--teal),var(--blue));  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .sum-card:nth-child(3) .sum-val{background:linear-gradient(135deg,var(--orange),var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .sum-lbl{color:var(--muted);font-size:.82rem;font-weight:500}
 
+    /* TABLE */
     .table-wrap{background:rgba(255,255,255,.88);backdrop-filter:blur(20px);
       border:2px solid rgba(255,255,255,.95);border-radius:24px;overflow:hidden;
       box-shadow:0 10px 40px rgba(132,94,247,.1)}
-    .table-top{padding:1.5rem 2rem;border-bottom:2px solid rgba(248,245,255,.9);
-      display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+    .table-top{padding:1.2rem 1.5rem;border-bottom:2px solid rgba(248,245,255,.9);
+      display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;
       background:linear-gradient(135deg,rgba(132,94,247,.04),rgba(255,107,157,.04))}
-    .table-title{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:var(--text)}
+    .table-title{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text)}
     .search-w{display:flex;align-items:center;background:var(--soft);border:2px solid rgba(132,94,247,.15);
-      border-radius:50px;padding:.45rem 1rem;gap:.5rem;transition:all .3s ease}
+      border-radius:50px;padding:.4rem .9rem;gap:.5rem;transition:all .3s ease}
     .search-w:focus-within{border-color:var(--purple);box-shadow:0 0 0 3px rgba(132,94,247,.1)}
-    .search-w i{color:#c4b5d8;font-size:.9rem}
-    .search-w input{background:none;border:none;outline:none;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;width:200px}
+    .search-w i{color:#c4b5d8;font-size:.9rem;flex-shrink:0}
+    .search-w input{background:none;border:none;outline:none;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;width:180px}
     .search-w input::placeholder{color:#c4b5d8}
 
-    table{width:100%;border-collapse:collapse}
+    .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    table{width:100%;border-collapse:collapse;min-width:550px}
     thead tr{background:rgba(248,245,255,.8)}
-    th{padding:1rem 1.5rem;font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+    th{padding:.9rem 1.2rem;font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
       color:var(--muted);text-align:left;border-bottom:2px solid rgba(248,245,255,.9);white-space:nowrap}
-    td{padding:1.1rem 1.5rem;font-size:.9rem;border-bottom:1px solid rgba(248,245,255,.9);vertical-align:middle}
+    td{padding:1rem 1.2rem;font-size:.88rem;border-bottom:1px solid rgba(248,245,255,.9);vertical-align:middle}
     tbody tr{transition:background .2s ease}
     tbody tr:hover{background:rgba(132,94,247,.03)}
     tbody tr:last-child td{border-bottom:none}
@@ -82,17 +88,17 @@
     .item-name{font-weight:700;color:var(--text)}
     .cat-tag{display:inline-flex;align-items:center;padding:.22rem .7rem;border-radius:50px;
       background:rgba(132,94,247,.08);border:1.5px solid rgba(132,94,247,.18);
-      font-size:.75rem;font-weight:700;color:var(--purple)}
+      font-size:.75rem;font-weight:700;color:var(--purple);white-space:nowrap}
     .loc-txt{color:var(--muted);font-size:.85rem}
 
     .badge-av{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .85rem;border-radius:50px;
       background:rgba(6,214,160,.1);border:1.5px solid rgba(6,214,160,.3);
-      color:#059669;font-size:.76rem;font-weight:700}
-    .badge-av::before{content:'';width:6px;height:6px;border-radius:50%;background:#06d6a0;animation:pd 2s infinite}
+      color:#059669;font-size:.76rem;font-weight:700;white-space:nowrap}
+    .badge-av::before{content:'';width:6px;height:6px;border-radius:50%;background:#06d6a0;animation:pd 2s infinite;flex-shrink:0}
     @keyframes pd{0%,100%{opacity:1}50%{opacity:.3}}
     .badge-cl{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .85rem;border-radius:50px;
       background:rgba(124,100,146,.08);border:1.5px solid rgba(124,100,146,.2);
-      color:var(--muted);font-size:.76rem;font-weight:600}
+      color:var(--muted);font-size:.76rem;font-weight:600;white-space:nowrap}
 
     .btn-claim{padding:.42rem 1rem;border-radius:50px;
       background:linear-gradient(135deg,var(--purple),var(--pink));border:none;
@@ -100,11 +106,42 @@
       cursor:pointer;text-decoration:none;transition:all .3s ease;display:inline-flex;align-items:center;gap:.35rem;
       box-shadow:0 4px 15px rgba(132,94,247,.3);white-space:nowrap}
     .btn-claim:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(132,94,247,.4);color:#fff}
-    .no-action{color:var(--muted);font-size:.82rem;display:flex;align-items:center;gap:.3rem}
+    .no-action{color:var(--muted);font-size:.82rem;display:flex;align-items:center;gap:.3rem;white-space:nowrap}
 
-    @media(max-width:768px){
-      nav{padding:1rem}.summary-row{grid-template-columns:1fr}
-      main{padding:1.5rem 1rem}th,td{padding:.8rem 1rem}.search-w input{width:130px}
+    /* Mobile card view for small screens */
+    .mobile-cards{display:none;padding:1rem}
+    .m-card{background:rgba(255,255,255,.9);border:1.5px solid rgba(255,255,255,.95);border-radius:18px;
+      padding:1rem 1.2rem;margin-bottom:1rem;box-shadow:0 4px 20px rgba(132,94,247,.07)}
+    .m-card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.8rem;gap:.5rem}
+    .m-card-name{font-weight:700;color:var(--text);font-size:.95rem}
+    .m-card-id{color:var(--muted);font-size:.72rem;margin-top:.2rem}
+    .m-card-row{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-top:.7rem;flex-wrap:wrap}
+    .m-card-loc{color:var(--muted);font-size:.82rem;display:flex;align-items:center;gap:.3rem}
+    .m-card-loc i{color:var(--pink);font-size:.75rem}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:640px){
+      nav{padding:.8rem 1rem}
+      .nav-badge{display:none}
+      .pill{padding:.38rem .75rem;font-size:.75rem}
+      main{padding:1.2rem 1rem}
+      .summary-row{grid-template-columns:1fr;gap:.8rem}
+      .sum-card{padding:1.2rem 1.4rem;display:flex;align-items:center;gap:1rem}
+      .sum-card::before{display:none}
+      .sum-card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:20px 0 0 20px}
+      .sum-card:nth-child(1)::after{background:linear-gradient(180deg,var(--purple),var(--pink))}
+      .sum-card:nth-child(2)::after{background:linear-gradient(180deg,var(--teal),var(--blue))}
+      .sum-card:nth-child(3)::after{background:linear-gradient(180deg,var(--orange),var(--yellow))}
+      .sum-val{font-size:2rem;margin-bottom:0}
+      .table-scroll{display:none}
+      .mobile-cards{display:block}
+      .search-w input{width:130px}
+      h1.pt{font-size:1.5rem}
+    }
+    @media(min-width:641px) and (max-width:900px){
+      .summary-row{grid-template-columns:repeat(3,1fr)}
+      main{padding:1.5rem 1.2rem}
+      .search-w input{width:140px}
     }
   </style>
 </head>
@@ -112,7 +149,7 @@
 <div class="mesh-bg"></div>
 
 <nav>
-  <div style="display:flex;align-items:center;gap:.8rem">
+  <div class="nav-left">
     <a href="/" class="brand">Lost & Found ✨</a>
     <span class="nav-badge">Admin</span>
   </div>
@@ -154,7 +191,9 @@
           <input type="text" id="si" placeholder="Filter items..." oninput="ft()">
         </div>
       </div>
-      <div style="overflow-x:auto">
+
+      <!-- Desktop Table -->
+      <div class="table-scroll">
         <table id="itbl">
           <thead>
             <tr>
@@ -181,6 +220,29 @@
           </tbody>
         </table>
       </div>
+
+      <!-- Mobile Cards -->
+      <div class="mobile-cards" id="mcards">
+        <div th:each="item : ${items}" class="m-card"
+             th:data-text="${item.id + ' ' + item.itemName + ' ' + item.category + ' ' + item.location + ' ' + item.status}">
+          <div class="m-card-header">
+            <div>
+              <div class="m-card-name" th:text="${item.itemName}"></div>
+              <div class="m-card-id" th:text="'#' + ${item.id} + ' · ' + ${item.category}"></div>
+            </div>
+            <span class="badge-av" th:if="${item.status == 'Available'}">Available</span>
+            <span class="badge-cl" th:if="${item.status == 'Claimed'}"><i class="bi bi-check2"></i>Claimed</span>
+          </div>
+          <div class="m-card-row">
+            <div class="m-card-loc"><i class="bi bi-geo-alt-fill"></i><span th:text="${item.location}"></span></div>
+            <a th:if="${item.status == 'Available'}" th:href="@{/claim/{id}(id=${item.id})}" class="btn-claim" style="font-size:.75rem;padding:.35rem .85rem">
+              <i class="bi bi-check-circle-fill"></i>Mark Claimed
+            </a>
+            <span th:if="${item.status == 'Claimed'}" class="no-action"><i class="bi bi-dash"></i>Done</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </main>
@@ -188,8 +250,13 @@
 <script>
   function ft(){
     const q=document.getElementById('si').value.toLowerCase();
+    // Desktop table rows
     document.querySelectorAll('#itbl tbody tr').forEach(r=>{
       r.style.display=r.textContent.toLowerCase().includes(q)?'':'none';
+    });
+    // Mobile cards
+    document.querySelectorAll('#mcards .m-card').forEach(c=>{
+      c.style.display=(c.dataset.text||'').toLowerCase().includes(q)?'':'none';
     });
   }
 </script>
